@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+PROJECT_DIR=$( dirname "${BASH_SOURCE[0]}")
+CATALOG_DIR=$(realpath ${PROJECT_DIR}/glade)
+
+# Run glade with the environment
+if [ -z "$1" ]
+then
+    GLADE_CATALOG_SEARCH_PATH=$CATALOG_DIR GLADE_MODULE_SEARCH_PATH=$CATALOG_DIR glade "$@"
+else
+    cd "$(dirname "$1")"
+    GLADE_CATALOG_SEARCH_PATH=$CATALOG_DIR GLADE_MODULE_SEARCH_PATH=$CATALOG_DIR glade "$(basename "$1")"
+fi

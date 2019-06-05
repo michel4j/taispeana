@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glade-catalog name="demoplugin" library="gladepython" depends="gtk+" domain="glade-3">
+    <init-function>glade_python_init</init-function>
+
+    <glade-widget-classes>
+        <glade-widget-class name="DemoByte" generic-name="demobyte" title="Demo Byte" icon-name="widget-gtk-stacksidebar"/>
+    </glade-widget-classes>
+
+    <glade-widget-group name="demo" title="Demo Widgets">
+        <glade-widget-class-ref name="DemoByte"/>
+    </glade-widget-group>
+</glade-catalog>

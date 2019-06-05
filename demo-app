@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+import argparse
+import os, sys
+import random
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, GLib
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from demo import widgets
+
+
+def change_value(obj, label):
+    obj.props.value = random.randint(0, 65535)
+    label.set_text(str(obj.value))
+    return True
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Demo Application.')
+    parser.add_argument('display', metavar='display', type=str, help='Display File Name')
+    args = parser.parse_args()
+
+    builder = Gtk.Builder()
+    builder.add_from_file(args.display)
+    window = builder.get_object("window1")
+    w = builder.get_object('wbyte1')
+    l = builder.get_object('value_label')
+
+    GLib.timeout_add(500, change_value, w, l)
+    window.connect('destroy', lambda x: Gtk.main_quit())
+    window.show_all()
+
+
+    Gtk.main()
