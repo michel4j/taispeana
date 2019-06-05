@@ -84,8 +84,10 @@ class DemoByte(Gtk.Widget):
         self.on_notify(None, None)
 
         print('Widget Properties:')
-        for prop in ['value', 'offset', 'count', 'big-endian', 'labels', 'colors', 'columns', 'size', 'table']:
+        for prop in ['value', 'offset', 'count', 'big-endian', 'labels', 'colors', 'columns', 'size']:
             print('-- {} = {}'.format(prop, self.get_property(prop)))
+        print('-- {} = {}'.format('table', [list(row) for row in self.table]))
+
 
     def do_draw(self, cr):
         allocation = self.get_allocation()
