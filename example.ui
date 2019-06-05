@@ -45,7 +45,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="columns">3</property>
-            <property name="labels">Name 1,Name 2,Name 3,Name 4, Name 5, Name 6, Name 7, Name 8</property>
+            <property name="labels">Bit 0:::0:,Bit 1:::0:,Bit 2:::0:,Bit 3:::0:,Bit 4:::0:,Bit 5:::0:,Bit 6:::0:,bit 7:::0:</property>
             <property name="size">12</property>
             <property name="value">24677</property>
           </object>
