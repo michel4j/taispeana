@@ -1,17 +1,6 @@
-import hashlib
-import json
-import os
-import subprocess
-import textwrap
-import zipfile
-from datetime import datetime
-from math import atan2, pi, cos, sin, ceil
-
 import gi
-
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, GObject, Gdk, Gio, GdkPixbuf, GLib
-
+from gi.repository import Gtk, GObject
 
 COLORS = {
     'R': '#ef2929',
@@ -27,10 +16,11 @@ COLORS = {
     'M': '#88419d'
 }
 
+
 def pix(v):
-    """Round to neareast 0.5 for cairo drawing"""
-    x = round(v * 2)
-    return x / 2 if x % 2 else (x + 1) / 2
+    """Shift to middle of pixel for cairo drawing"""
+    return round(v)+0.5
+
 
 class ColorSequence(object):
     def __init__(self, sequence):
@@ -71,7 +61,7 @@ class DemoByte(Gtk.Widget):
         self.set_size_request(200, 200)
         for prop in ['value', 'offset', 'count', 'big-endian', 'labels', 'colors', 'columns', 'size']:
             self.connect('notify::{}'.format(prop), self.on_notify)
-        
+
     def do_realize(self):
         allocation = self.get_allocation()
         attr = Gdk.WindowAttr()
@@ -89,7 +79,6 @@ class DemoByte(Gtk.Widget):
         self.set_realized(True)
         window.set_background_pattern(None)
         self.on_notify(None, None)
-
 
     def do_draw(self, cr):
         allocation = self.get_allocation()
@@ -139,5 +128,3 @@ class DemoByte(Gtk.Widget):
         self._view_labels = labels + (self.count - len(labels)) * ['']
 
         self.queue_draw()
-
-
