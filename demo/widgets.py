@@ -54,6 +54,7 @@ class DemoByte(Gtk.Widget):
     colors = GObject.Property(type=str, default="AG", nick='Value Colors')
     columns = GObject.Property(type=int, minimum=1, maximum=8, default=1, nick='Columns')
     size = GObject.Property(type=int, minimum=5, maximum=50, default=10, nick='LED Size')
+    table = GObject.Property(type=Gtk.ListStore, nick='Test Table Data')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,6 +82,10 @@ class DemoByte(Gtk.Widget):
         self.set_realized(True)
         window.set_background_pattern(None)
         self.on_notify(None, None)
+
+        print('Widget Properties:')
+        for prop in ['value', 'offset', 'count', 'big-endian', 'labels', 'colors', 'columns', 'size', 'table']:
+            print('-- {} = {}'.format(prop, self.get_property(prop)))
 
     def do_draw(self, cr):
         allocation = self.get_allocation()
